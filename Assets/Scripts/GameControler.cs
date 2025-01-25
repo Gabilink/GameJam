@@ -11,7 +11,7 @@ public class GameControler : MonoBehaviour
 
     #region Player
     private GameObject playerGO;
-    //controlador de player cuando lo cree yori
+    private Player_Movement playerScr;
     #endregion
 
     #region Estados de juego

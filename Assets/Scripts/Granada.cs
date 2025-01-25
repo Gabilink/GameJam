@@ -30,7 +30,7 @@ public class Granada : MonoBehaviour
             if (c.CompareTag("Enemy"))
             {
                 Debug.Log("Enemigo alcanzado");
-                
+                c.GetComponent<EnemyMovement>().Damage(dano);
             }
         }
 
