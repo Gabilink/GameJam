@@ -7,7 +7,7 @@ public class HUDControler : MonoBehaviour
 {
     private GameControler gameControler;
 
-    //private PlayerControler playerScr;
+    private Player_Movement playerScr;
 
     #region Escenas
     [SerializeField] private int mainMenuScene;
@@ -44,6 +44,8 @@ public class HUDControler : MonoBehaviour
         //ammoPlayer = playerScr.GetAmmo();
         //granadasPlayer = playerScr.GetGranadas();
 
+
+        //Tomar puntuacio del gamecontroller pls
         InvokeRepeating("UpdateUI", 0, 1f);
     }
 
