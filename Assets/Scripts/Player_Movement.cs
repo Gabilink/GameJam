@@ -54,4 +54,9 @@ public class Player_Movement : MonoBehaviour
         // horizontal rotation 
         playerBody.Rotate(Vector3.up * mouseX);
     }
+   
+    private void OnTriggerEnter(Collider coll)
+    {
+        
+    }
 }
