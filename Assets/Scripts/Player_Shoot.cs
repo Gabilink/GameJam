@@ -7,6 +7,8 @@ public class Player_Shoot : MonoBehaviour
     private Ray ray;
     public int numDeArmas = 1;
     public LayerMask layersToHit;
+
+    public ParticleSystem burbujas;
     void Update()
     {
         if (Input.GetButtonDown("Fire1")) { Shoot(); }
@@ -15,6 +17,7 @@ public class Player_Shoot : MonoBehaviour
     {
         ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         Debug.Log("BANG");
+        burbujas.Play();
         CheckCollider();
     }
     void CheckCollider()
