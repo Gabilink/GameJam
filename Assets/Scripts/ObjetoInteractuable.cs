@@ -6,13 +6,14 @@ public class ObjetoInteractuable : MonoBehaviour
     private SphereCollider hitbox;
 
     private bool playerEnRango;
-    private Transform player;
+    private GameObject player;
+    //player controler
 
     private void Start()
     {
         hitbox = GetComponent<SphereCollider>();
         hitbox.radius = radio;
-        player = GameObject.FindWithTag("Player").transform;
+        player = GameObject.FindWithTag("Player");
     }
 
     public virtual void Interactuar()
