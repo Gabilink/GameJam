@@ -44,6 +44,8 @@ public class HUDControler : MonoBehaviour
         //ammoPlayer = playerScr.GetAmmo();
         //granadasPlayer = playerScr.GetGranadas();
 
+
+        //Tomar puntuacio del gamecontroller pls
         InvokeRepeating("UpdateUI", 0, 1f);
     }
 

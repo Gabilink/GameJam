@@ -9,6 +9,10 @@ public class GameControler : MonoBehaviour
     private static GameControler instance;
     public static GameControler GetInstance() { return instance; }
 
+    //COMBOS
+    private int puntuacion;
+    private bool previousCombo;
+
     #region Player
     private GameObject playerGO;
     //controlador de player cuando lo cree yori
@@ -42,6 +46,9 @@ public class GameControler : MonoBehaviour
 
         playerGO = GameObject.FindGameObjectWithTag("Player");
         //pillar el player cuando lo cree yori
+
+        puntuacion = 0;
+        previousCombo = false;
     }
 
     private void FixedUpdate()
@@ -62,5 +69,24 @@ public class GameControler : MonoBehaviour
             //mostrar menu de pausa
         }
     }
-
+    public void Puntuacion(int combo) //Hay puntos positivos por limpiar y negativos cuando los enemigos vuelven a ensuciar
+    {
+        if(combo>0)
+        {
+           if(previousCombo)
+            {
+                puntuacion += (combo * 2);
+            }
+           if(!previousCombo)
+            {
+                puntuacion += combo;
+                previousCombo = true;
+            }
+        }
+        if(combo<0)
+        {
+            previousCombo = false;
+            puntuacion += combo;
+        }
+    }
 }
