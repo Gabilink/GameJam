@@ -7,7 +7,7 @@ public class HUDControler : MonoBehaviour
 {
     private GameControler gameControler;
 
-    //private PlayerControler playerScr;
+    private Player_Movement playerScr;
 
     #region Escenas
     [SerializeField] private int mainMenuScene;

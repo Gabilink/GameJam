@@ -7,7 +7,7 @@ public class ObjetoInteractuable : MonoBehaviour
 
     private bool playerEnRango;
     private GameObject player;
-    //player controler
+    private Player_Movement playerScr;
 
     private void Start()
     {
