@@ -7,6 +7,8 @@ public class EnemyMele : MonoBehaviour
     [SerializeField] private int distanciaAtaque;
     [SerializeField] private int dano;
     private NavMeshAgent agente;
+    private bool attacking;
+    public GameObject hitbox;
 
     private GameObject playerGO;
     private Player_Movement playerScr;
@@ -18,6 +20,8 @@ public class EnemyMele : MonoBehaviour
 
         playerGO = GameObject.FindGameObjectWithTag("Player");
         playerScr = playerGO.GetComponent<Player_Movement>();
+
+        hitbox.SetActive(false);
     }
 
     private void Update()
@@ -29,12 +33,20 @@ public class EnemyMele : MonoBehaviour
         else
         {
             agente.SetDestination(transform.position);
+            Debug.Log("ATAQUE");
             StartCoroutine(Atacar());
         }
     }
 
     IEnumerator Atacar()
     {
-        yield return new WaitForSeconds(1);
+        if (!attacking)
+        {
+            attacking = true;
+            hitbox.SetActive(true);
+            yield return new WaitForSeconds(2f);
+            hitbox.SetActive(false);
+            attacking = false;
+        }
     }
 }

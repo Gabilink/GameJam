@@ -2,17 +2,24 @@ using UnityEngine;
 
 public class Cuadros : MonoBehaviour
 {
-    public Material cuadroSucio;
+    public GameObject cuadro;
+    public Material marcoLimpio;
     public Material cuadroLimpio;
     public ParticleSystem burbujas;
+    private bool limpio;
     private void Start()
     {
-        gameObject.GetComponent<MeshRenderer>().material = cuadroSucio;
+        limpio = false;
     }
     public void Limpiar()
     {
         //Cambio de material y poner particulas
-        gameObject.GetComponent<MeshRenderer>().material = cuadroLimpio;
-        burbujas.Play();
+        if(!limpio)
+        {
+            gameObject.GetComponent<MeshRenderer>().material = marcoLimpio;
+            cuadro.GetComponent<MeshRenderer>().material = cuadroLimpio;
+            burbujas.Play();
+            limpio = true;
+        }        
     }
 }
