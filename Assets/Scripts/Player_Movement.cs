@@ -4,6 +4,8 @@ public class Player_Movement : MonoBehaviour
 {
     private CharacterController playerController;
     public float playerSpeed = 10f;
+    private float vSpeed = 0;
+    private float gravity = 9.8f;
 
     public float sensitivityMouse = 10f;
     public Transform playerBody;
@@ -18,6 +20,11 @@ public class Player_Movement : MonoBehaviour
     {
         PlayerMove();
         PlayerRotate();
+        Vector3 vel= transform.forward * Input.GetAxis("Vertical") * playerSpeed;
+        vSpeed -= gravity * Time.deltaTime;
+        vel.y = vSpeed; // include vertical speed in vel
+                        // convert vel to displacement and Move the character:
+        playerController.Move(vel * Time.deltaTime);
     }
     void PlayerMove()
     {

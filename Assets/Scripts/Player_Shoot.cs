@@ -36,5 +36,10 @@ public class Player_Shoot : MonoBehaviour
             }
             Debug.Log(hit.collider.gameObject.name + " fue herido");
         }
+        if (Physics.Raycast(ray, out RaycastHit golpe, maxDistance/*layersToHit*/) && hit.collider.gameObject.tag == "Painting")
+        {
+            Cuadros cuadros = hit.transform.GetComponent<Cuadros>();
+            cuadros.Limpiar();
+        }
     }
 }
