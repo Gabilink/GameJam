@@ -1773,7 +1773,7 @@ GameObject:
   - component: {fileID: 1396513068}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2892,6 +2892,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ebf2694e711fb346abab22893299a0c, type: 3}
+--- !u!1001 &2951299858675185866
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1343641948990034253, guid: e50270b94b57e2b448a611e3f468cf28, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 1343641948990034253, guid: e50270b94b57e2b448a611e3f468cf28, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 1343641948990034253, guid: e50270b94b57e2b448a611e3f468cf28, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1343641948990034253, guid: e50270b94b57e2b448a611e3f468cf28, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1343641948990034253, guid: e50270b94b57e2b448a611e3f468cf28, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1343641948990034253, guid: e50270b94b57e2b448a611e3f468cf28, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1343641948990034253, guid: e50270b94b57e2b448a611e3f468cf28, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1343641948990034253, guid: e50270b94b57e2b448a611e3f468cf28, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1343641948990034253, guid: e50270b94b57e2b448a611e3f468cf28, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1343641948990034253, guid: e50270b94b57e2b448a611e3f468cf28, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1783198800885333836, guid: e50270b94b57e2b448a611e3f468cf28, type: 3}
+      propertyPath: m_Name
+      value: Granada
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e50270b94b57e2b448a611e3f468cf28, type: 3}
 --- !u!1001 &5356333418304574658
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3259,3 +3316,4 @@ SceneRoots:
   - {fileID: 1642972607}
   - {fileID: 583182793}
   - {fileID: 1396513067}
+  - {fileID: 2951299858675185866}
