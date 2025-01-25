@@ -3,10 +3,7 @@ using System.Collections;
 
 public class Puerta : MonoBehaviour
 {
-
-    private Vector3 posicionCerrado;
-    private Vector3 posicionAbierto;
-
+    private Animator animator;
     private bool abierta = false;
 
     private GameObject player;
@@ -16,28 +13,29 @@ public class Puerta : MonoBehaviour
 
     void Start()
     {
-        posicionCerrado = new Vector3(0.0f, 0.0f, 0.0f);
-        posicionAbierto = new Vector3(0.0f, 0.0f, 90.0f);
+        animator = this.GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Abrir()
     {
-        transform.rotation = Quaternion.Euler(posicionAbierto);
+        animator.SetBool("abrir", true);
     }
 
     void Cerrar()
     {
-        transform.rotation = Quaternion.Euler(posicionCerrado);
+        animator.SetBool("abrir", false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Puerta OnTriggerEnter");
         if (other.gameObject == player)
         {
+            Abrir();
             if (!abierta)
             {
-                Abrir();
+                
                 abierta = true;
             }
         }
