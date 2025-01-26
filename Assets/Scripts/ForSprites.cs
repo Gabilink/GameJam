@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ForSprites : MonoBehaviour
 {
-    void Update()
+    void LateUpdate()
     {
         transform.rotation = Camera.main.transform.rotation;
     }

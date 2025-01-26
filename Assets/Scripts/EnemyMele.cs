@@ -13,6 +13,8 @@ public class EnemyMele : MonoBehaviour
     private GameObject playerGO;
     private Player_Movement playerScr;
 
+    public Animator anim;
+
     private void Start()
     {
         agente = GetComponent<NavMeshAgent>();
@@ -35,18 +37,27 @@ public class EnemyMele : MonoBehaviour
             agente.SetDestination(transform.position);
             Debug.Log("ATAQUE");
             StartCoroutine(Atacar());
+            anim.SetBool("Attacking", true);
         }
     }
 
     IEnumerator Atacar()
     {
         if (!attacking)
-        {
+        {         
             attacking = true;
-            hitbox.SetActive(true);
-            yield return new WaitForSeconds(2f);
-            hitbox.SetActive(false);
+            yield return new WaitForSeconds(2f);          
             attacking = false;
+            anim.SetBool("Attacking", false);
         }
+    }
+    public void ActivateHitbox(string a)
+    {
+        hitbox.SetActive(true);
+        Debug.Log(a);
+    }
+    public void DeactivateHitbox()
+    {
+        hitbox.SetActive(false);
     }
 }
