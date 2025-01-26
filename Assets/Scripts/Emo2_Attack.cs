@@ -2,15 +2,25 @@ using UnityEngine;
 
 public class Emo2_Attack : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    //FALTA RB PARA EL WALKING
+    public GameObject monsterLata;
+    public GameObject puntoSalida;
+    private Transform target;
     void Start()
     {
-        
+        target = GameObject.FindWithTag("Player").transform;
     }
-
-    // Update is called once per frame
     void Update()
     {
         
+    }
+    public void LanzarMonster()
+    {
+        Vector3 relativePos = target.position - transform.position;
+        Instantiate(monsterLata, puntoSalida.transform.position, Quaternion.LookRotation(relativePos, Vector3.up));
+    }
+    public void ReiniciarAtaque()
+    {
+
     }
 }

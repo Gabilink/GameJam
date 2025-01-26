@@ -4,7 +4,7 @@ using System.Collections;
 
 public class EnemySniper : MonoBehaviour
 {
-    [SerializeField] private int distanciaAtaque;
+    [SerializeField] private int distanciaAtaque = 3;
     private NavMeshAgent agente;
     private bool attacking;
 
@@ -33,7 +33,7 @@ public class EnemySniper : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, playerGO.transform.position) >= distanciaAtaque)
             {
-                agente.SetDestination(playerGO.transform.position);
+                agente.SetDestination(-playerGO.transform.position);
             }
             else
             {

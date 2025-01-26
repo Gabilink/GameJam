@@ -13,6 +13,8 @@ public class EnemyMovement : MonoBehaviour
 
     public Emo1_Attack emo1;
 
+    public Emo2_Attack emo2;
+
     public ParticleSystem limpio;
 
     void Start()
@@ -31,10 +33,21 @@ public class EnemyMovement : MonoBehaviour
         //{
         //    angente.SetDestination(playerPos.position);
         //}
-        if(!anim.GetBool("Attacking"))
+        if(emo1!=null)
         {
-            emo1.DeactivateHitbox();
+            if (!anim.GetBool("Attacking"))
+            {
+                emo1.DeactivateHitbox();
+            }
         }
+        //if (emo2 != null)
+        //{
+        //    if (!anim.GetBool("Attacking"))
+        //    {
+        //        //emo2.DeactivateHitbox();
+        //    }
+        //}
+
     }
     void LateUpdate()
     {
@@ -50,7 +63,10 @@ public class EnemyMovement : MonoBehaviour
             limpio.Play();
             anim.SetBool("Dirty", false);
             //Debug.Log("MUERTO CONO");
-            emo1.DeactivateHitbox();
+            if (emo1 != null)
+            {
+                emo1.DeactivateHitbox();
+            }
         }
     }
 }
