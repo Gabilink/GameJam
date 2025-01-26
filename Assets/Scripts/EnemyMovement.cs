@@ -5,11 +5,15 @@ public class EnemyMovement : MonoBehaviour
 {
     public Animator anim;
 
-    private int enemyLife = 4;
-    private bool sucio;
+    private int enemyLife = 3;
+    //private bool sucio;
     private NavMeshAgent angente;
 
     private Transform playerPos;
+
+    public Emo1_Attack emo1;
+
+    public ParticleSystem limpio;
 
     void Start()
     {
@@ -27,15 +31,26 @@ public class EnemyMovement : MonoBehaviour
         //{
         //    angente.SetDestination(playerPos.position);
         //}
+        if(!anim.GetBool("Attacking"))
+        {
+            emo1.DeactivateHitbox();
+        }
     }
-    public void Damage(int daño)
+    void LateUpdate()
     {
-        enemyLife -= daño;
+        //transform.rotation = Camera.main.transform.rotation;
+        transform.rotation = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
+    }
+    public void Damage(int dano)
+    {
+        enemyLife -= dano;
         if(enemyLife<=0)
         {
-            sucio = false;
+            //sucio = false;
+            limpio.Play();
             anim.SetBool("Dirty", false);
-            Debug.Log("MUERTO CONO");
+            //Debug.Log("MUERTO CONO");
+            emo1.DeactivateHitbox();
         }
     }
 }

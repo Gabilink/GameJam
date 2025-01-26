@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
 
-public class EnemyMele : MonoBehaviour
+public class EnemySniper : MonoBehaviour
 {
     [SerializeField] private int distanciaAtaque;
     private NavMeshAgent agente;
@@ -13,7 +13,7 @@ public class EnemyMele : MonoBehaviour
 
     private Rigidbody rb;
 
-    public Animator animator;
+    public Animator anim;
 
     private void Start()
     {
@@ -29,7 +29,7 @@ public class EnemyMele : MonoBehaviour
 
     private void Update()
     {
-        if (animator.GetBool("Dirty"))
+        if (anim.GetBool("Dirty"))
         {
             if (Vector3.Distance(transform.position, playerGO.transform.position) >= distanciaAtaque)
             {
@@ -39,21 +39,21 @@ public class EnemyMele : MonoBehaviour
             {
                 agente.SetDestination(transform.position);
                 StartCoroutine(Atacar());
-                animator.SetBool("Attacking", true);
+                anim.SetBool("Attacking", true);
             }
         }
-                     
+
     }
     private void FixedUpdate()
     {
         Vector3 vel = rb.linearVelocity;
-        if (vel.magnitude!=0)
+        if (vel.magnitude != 0)
         {
-            animator.SetBool("Walking", true);
+            anim.SetBool("Walking", true);
         }
         if (vel.magnitude == 0)
         {
-            animator.SetBool("Walking", false);
+            anim.SetBool("Walking", false);
         }
     }
 
@@ -61,11 +61,11 @@ public class EnemyMele : MonoBehaviour
     {
         if (!attacking)
         {
-            animator.SetBool("Dirty", true);
+            anim.SetBool("Dirty", true);
             attacking = true;
-            yield return new WaitForSeconds(2f);          
+            yield return new WaitForSeconds(2f);
             attacking = false;
-            animator.SetBool("Attacking", false);
+            anim.SetBool("Attacking", false);
         }
     }
 

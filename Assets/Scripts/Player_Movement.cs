@@ -11,15 +11,22 @@ public class Player_Movement : MonoBehaviour
     public Transform playerBody;
     public Transform cameraBody;
     float xRotation = 0f;
+
+    private float life = 100;
+    private bool alive;
     void Start()
     {
+        alive = true;
         playerController = GetComponent<CharacterController>();
         LockCursor();
     }
     void Update()
     {
-        PlayerMove();
-        PlayerRotate();
+        if(alive)
+        {
+            PlayerMove();
+            PlayerRotate();
+        }
         Vector3 vel = transform.forward * Input.GetAxis("Vertical") * playerSpeed;
         vSpeed -= gravity * Time.deltaTime;
         vel.y = vSpeed; // include vertical speed in vel
@@ -55,8 +62,12 @@ public class Player_Movement : MonoBehaviour
         playerBody.Rotate(Vector3.up * mouseX);
     }
    //PARA RECIBIR DAMAGE
-    private void OnTriggerEnter(Collider coll)
+    public void RecibirDano(float d)
     {
-        
+        life -= d;
+        if(life<=0)
+        {
+            alive = false;
+        }
     }
 }
