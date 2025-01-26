@@ -5,15 +5,15 @@ using System.Collections;
 public class EnemyMele : MonoBehaviour
 {
     [SerializeField] private int distanciaAtaque;
-    [SerializeField] private int dano;
     private NavMeshAgent agente;
     private bool attacking;
-    public GameObject hitbox;
 
     private GameObject playerGO;
     private Player_Movement playerScr;
 
-    public Animator anim;
+    private Rigidbody rb;
+
+    public Animator animator;
 
     private void Start()
     {
@@ -21,43 +21,52 @@ public class EnemyMele : MonoBehaviour
         agente.stoppingDistance = distanciaAtaque;
 
         playerGO = GameObject.FindGameObjectWithTag("Player");
+
         playerScr = playerGO.GetComponent<Player_Movement>();
 
-        hitbox.SetActive(false);
+        rb = gameObject.GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
-        if(Vector3.Distance(transform.position, playerGO.transform.position) >= distanciaAtaque)
+        if (animator.GetBool("Dirty"))
         {
-            agente.SetDestination(playerGO.transform.position);
+            if (Vector3.Distance(transform.position, playerGO.transform.position) >= distanciaAtaque)
+            {
+                agente.SetDestination(playerGO.transform.position);
+            }
+            else
+            {
+                agente.SetDestination(transform.position);
+                StartCoroutine(Atacar());
+                animator.SetBool("Attacking", true);
+            }
         }
-        else
+                     
+    }
+    private void FixedUpdate()
+    {
+        Vector3 vel = rb.linearVelocity;
+        if (vel.magnitude!=0)
         {
-            agente.SetDestination(transform.position);
-            Debug.Log("ATAQUE");
-            StartCoroutine(Atacar());
-            anim.SetBool("Attacking", true);
+            animator.SetBool("Walking", true);
+        }
+        if (vel.magnitude == 0)
+        {
+            animator.SetBool("Walking", false);
         }
     }
 
     IEnumerator Atacar()
     {
         if (!attacking)
-        {         
+        {
+            animator.SetBool("Dirty", true);
             attacking = true;
             yield return new WaitForSeconds(2f);          
             attacking = false;
-            anim.SetBool("Attacking", false);
+            animator.SetBool("Attacking", false);
         }
     }
-    public void ActivateHitbox(string a)
-    {
-        hitbox.SetActive(true);
-        Debug.Log(a);
-    }
-    public void DeactivateHitbox()
-    {
-        hitbox.SetActive(false);
-    }
+
 }

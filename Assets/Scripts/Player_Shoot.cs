@@ -9,15 +9,32 @@ public class Player_Shoot : MonoBehaviour
     public LayerMask layersToHit;
 
     public ParticleSystem burbujas;
+    public ParticleSystem agua;
+
+    //PROVISIONAL
+    public float timeBtwShot = 1;  
+    private float timeOfLastShot;
     void Update()
     {
-        if (Input.GetButtonDown("Fire1")) { Shoot(); }
+        if (Input.GetButtonDown("Fire1"))
+        {
+            if (Time.time - timeOfLastShot >= timeBtwShot) 
+            {
+                Shoot();
+                timeOfLastShot = Time.time;
+            }
+        }
     }
+
+    //PARA LA ANIMACION DE DISPARO
+
+    //LA ANIMACION DE DISPARO ACABA CON UN EVENTO QUE ACTIVA LA DE RECARGA LA CUAL TAMBIEN TENDRA UN EVENTO QUE PERMITIRA VOLVER A DISPARAR
     void Shoot()
     {
         ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         Debug.Log("BANG");
         burbujas.Play();
+        agua.Play();
         CheckCollider();
     }
     void CheckCollider()
@@ -41,5 +58,6 @@ public class Player_Shoot : MonoBehaviour
             Cuadros cuadros = hit.transform.GetComponent<Cuadros>();
             cuadros.Limpiar();
         }
+        //Debug.Log(hit.collider.gameObject.name + " fue herido");
     }
 }
