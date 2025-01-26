@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Player_Movement : MonoBehaviour
 {
+    private GameControler gameMaster;
+
     private CharacterController playerController;
     public float playerSpeed = 10f;
     private float vSpeed = 0;
@@ -13,25 +15,68 @@ public class Player_Movement : MonoBehaviour
     float xRotation = 0f;
 
     private float life = 100;
+    public float GetLife() { return life; }
+    public void SetLife(float _life) { life = _life; }
+
     private bool alive;
+
+    private int escudo;
+    public int GetEscudo() { return escudo; }
+    public void SetEscudo(int _escudo) { escudo = _escudo; }
+
+    private int ammo;
+    public int GetAmmo() { return ammo; }
+    public void SetAmmo(int _ammo)
+    {
+        ammo = _ammo;
+        disparosScr.StartCoroutine(disparosScr.Recargar());
+    }
+
+    private int granadas = 0;
+    public int GetGranadas() { return granadas; }
+    public void SetGranadas(int _granadas) { granadas = _granadas; }
+    [SerializeField] private GameObject granada;
+
+    private Player_Shoot disparosScr;
+
+    private AudioSource sonido;
+    [SerializeField] private AudioClip[] sufrir;
+    [SerializeField] private AudioClip recibirImpacto;
+    [SerializeField] private AudioClip lanzar;
+
+
     void Start()
     {
+        gameMaster = GameControler.GetInstance();
+        sonido = GetComponent<AudioSource>();
+        disparosScr = GetComponent<Player_Shoot>();
         alive = true;
         playerController = GetComponent<CharacterController>();
         LockCursor();
     }
     void Update()
     {
-        if(alive)
+        if(!gameMaster.GetGamePause())
         {
-            PlayerMove();
-            PlayerRotate();
+            if (alive)
+            {
+                PlayerMove();
+                PlayerRotate();
+            }
+            Vector3 vel = transform.forward * Input.GetAxis("Vertical") * playerSpeed;
+            vSpeed -= gravity * Time.deltaTime;
+            vel.y = vSpeed; // include vertical speed in vel
+                            // convert vel to displacement and Move the character:
+            playerController.Move(vel * Time.deltaTime);
+
+            ammo = disparosScr.GetAmmo();
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                LanzarGrana();
+            }
         }
-        Vector3 vel = transform.forward * Input.GetAxis("Vertical") * playerSpeed;
-        vSpeed -= gravity * Time.deltaTime;
-        vel.y = vSpeed; // include vertical speed in vel
-                        // convert vel to displacement and Move the character:
-        playerController.Move(vel * Time.deltaTime);
+        
     }
     void PlayerMove()
     {
@@ -44,8 +89,17 @@ public class Player_Movement : MonoBehaviour
     }
     void LockCursor()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        if(!gameMaster.GetGamePause())
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+
     }
     void PlayerRotate()
     {
@@ -61,13 +115,29 @@ public class Player_Movement : MonoBehaviour
         // horizontal rotation 
         playerBody.Rotate(Vector3.up * mouseX);
     }
-   //PARA RECIBIR DAMAGE
+    //PARA RECIBIR DAMAGE
     public void RecibirDano(float d)
     {
+        sonido.clip = recibirImpacto;
+        sonido.Play();
         life -= d;
-        if(life<=0)
+        if (life <= 0)
         {
+            sonido.clip = sufrir[Random.Range(0, sufrir.Length)];
+            sonido.Play();
             alive = false;
+            gameMaster.SetGameOver(true);
+        }
+    }
+
+    void LanzarGrana()
+    {
+        if (granadas > 0)
+        {
+            sonido.clip = lanzar;
+            sonido.Play();
+            granadas--;
+            Instantiate(granada, transform.position + transform.forward, Quaternion.identity);
         }
     }
 }

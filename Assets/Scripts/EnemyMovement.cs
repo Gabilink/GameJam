@@ -11,17 +11,17 @@ public class EnemyMovement : MonoBehaviour
 
     private Transform playerPos;
 
-    public Emo1_Attack emo1;
+    //public Emo1_Attack emo1;
 
-    public Emo2_Attack emo2;
+    //public Emo2_Attack emo2;
 
-    public ParticleSystem limpio;
+    //public ParticleSystem limpio;
 
     void Start()
     {
 
-        //angente = GetComponent<NavMeshAgent>();
-        //playerPos = GameObject.FindGameObjectWithTag("Player").transform;
+        angente = GetComponent<NavMeshAgent>();
+        playerPos = GameObject.FindGameObjectWithTag("Player").transform;
 
         //sucio = true;//esto se le pondra un if para cuando vea al jugador
         anim.SetBool("Dirty", true);
@@ -29,24 +29,47 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
-        //if(sucio)
-        //{
-        //    angente.SetDestination(playerPos.position);
-        //}
-        if(emo1!=null)
+
+        if(Vector3.Distance(transform.position, playerPos.position) <= 10)
         {
-            if (!anim.GetBool("Attacking"))
+            //crear un raycast para ver si el jugador esta en la mira
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, playerPos.position - transform.position, out hit))
             {
-                emo1.DeactivateHitbox();
+                if (hit.collider.CompareTag("Player"))
+                {
+                    angente.SetDestination(playerPos.position);
+                }
+                else
+                {
+                    angente.SetDestination(transform.position);
+                }
             }
+
         }
-        //if (emo2 != null)
+        else
+        {
+            angente.SetDestination(transform.position);
+            
+        }
+        ////if(sucio)
+        ////{
+        ////    angente.SetDestination(playerPos.position);
+        ////}
+        //if (emo1!=null)
         //{
         //    if (!anim.GetBool("Attacking"))
         //    {
-        //        //emo2.DeactivateHitbox();
+        //        emo1.DeactivateHitbox();
         //    }
         //}
+        ////if (emo2 != null)
+        ////{
+        ////    if (!anim.GetBool("Attacking"))
+        ////    {
+        ////        //emo2.DeactivateHitbox();
+        ////    }
+        ////}
 
     }
     void LateUpdate()
@@ -60,13 +83,15 @@ public class EnemyMovement : MonoBehaviour
         if(enemyLife<=0)
         {
             //sucio = false;
-            limpio.Play();
-            anim.SetBool("Dirty", false);
-            //Debug.Log("MUERTO CONO");
-            if (emo1 != null)
-            {
-                emo1.DeactivateHitbox();
-            }
+            //limpio.Play();
+            //anim.SetBool("Dirty", false);
+            ////Debug.Log("MUERTO CONO");
+            //if (emo1 != null)
+            //{
+            //    emo1.DeactivateHitbox();
+            //}
+
+            Destroy(gameObject);
         }
     }
 }

@@ -53,20 +53,29 @@ public class GameControler : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            SetGamePause(!GetGamePause());
-        }
+        
     }
 
     private void Update()
     {
-        if(gamePause)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            //detener jugador
-            //detener enemigos
-            //detener tiempo
-            //mostrar menu de pausa
+            SetGamePause(!GetGamePause());
+        }
+        if (gamePause)
+        {
+            Time.timeScale = 0;
+            gamePauseUI.SetActive(true);
+        }
+        else
+        {
+            Time.timeScale = 1;
+            gamePauseUI.SetActive(false);
+        }
+        if (gameOver)
+        {
+            Time.timeScale = 0;
+            gameOverUI.SetActive(true);
         }
     }
     public void Puntuacion(int combo) //Hay puntos positivos por limpiar y negativos cuando los enemigos vuelven a ensuciar

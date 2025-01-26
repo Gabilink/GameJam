@@ -146,9 +146,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 336414421932886193}
-  - component: {fileID: 4330855924271799023}
-  - component: {fileID: 3896240954773182898}
   - component: {fileID: 5420451168613774841}
+  - component: {fileID: 3896240954773182898}
+  - component: {fileID: 4330855924271799023}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -173,6 +173,43 @@ Transform:
   - {fileID: 1558961643383369033}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5420451168613774841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8702085659544600495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45dfe78f7fd922d4883ee3c772b60f3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  maxDistance: 50
+  numDeArmas: 1
+  layersToHit:
+    serializedVersion: 2
+    m_Bits: 0
+  burbujas: {fileID: 0}
+  agua: {fileID: 0}
+  timeBtwShot: 1
+--- !u!114 &3896240954773182898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8702085659544600495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d01d984f1354d45819eebad68159d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSpeed: 15
+  sensitivityMouse: 25
+  playerBody: {fileID: 336414421932886193}
+  cameraBody: {fileID: 1773217076999878945}
 --- !u!143 &4330855924271799023
 CharacterController:
   m_ObjectHideFlags: 0
@@ -198,40 +235,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3896240954773182898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8702085659544600495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d01d984f1354d45819eebad68159d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerSpeed: 15
-  sensitivityMouse: 25
-  playerBody: {fileID: 336414421932886193}
-  cameraBody: {fileID: 1773217076999878945}
---- !u!114 &5420451168613774841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8702085659544600495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45dfe78f7fd922d4883ee3c772b60f3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
-  maxDistance: 50
-  numDeArmas: 1
-  layersToHit:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1 &8860495948703510336
 GameObject:
   m_ObjectHideFlags: 0

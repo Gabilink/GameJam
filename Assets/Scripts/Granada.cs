@@ -7,9 +7,15 @@ public class Granada : MonoBehaviour
     [SerializeField] private float explosionRadius;
     [SerializeField] private int dano;
 
+    private Rigidbody rb;
+    [SerializeField] private int impulso;
+
 
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
+        rb.AddForce(transform.forward * impulso, ForceMode.Impulse);
+
         StartCoroutine(CuentaAtras());
     }
 

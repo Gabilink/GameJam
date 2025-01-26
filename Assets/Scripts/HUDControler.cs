@@ -37,21 +37,35 @@ public class HUDControler : MonoBehaviour
 
     private void Start()
     {
+
         gameControler = GameControler.GetInstance();
-        //playerScr = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControler>();
-        //saludPlayer = playerScr.GetSalud();
-        //escudoPlayer = playerScr.GetEscudo();
-        //ammoPlayer = playerScr.GetAmmo();
-        //granadasPlayer = playerScr.GetGranadas();
+        playerScr = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Movement>();
+        saludPlayer = (int)playerScr.GetLife();
+        escudoPlayer = playerScr.GetEscudo();
+        ammoPlayer = playerScr.GetAmmo();
+        granadasPlayer = playerScr.GetGranadas();
 
-
-        //Tomar puntuacio del gamecontroller pls
         InvokeRepeating("UpdateUI", 0, 1f);
+
     }
 
     private void UpdateUI()
     {
-        //actualizar los valores
+        saludPlayer = (int)playerScr.GetLife();
+        escudoPlayer = playerScr.GetEscudo();
+        ammoPlayer = playerScr.GetAmmo();
+        granadasPlayer = playerScr.GetGranadas();
+
+        saludText = saludPlayer.ToString();
+        escudoText = escudoPlayer.ToString();
+        ammoText = ammoPlayer.ToString();
+        granadasText = granadasPlayer.ToString();
+
+        salud.text = saludText;
+        escudo.text = escudoText;
+        ammo.text = ammoText;
+        granadas.text = granadasText;
+
     }
 
     #region Botones
