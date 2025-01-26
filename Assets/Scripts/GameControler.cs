@@ -9,6 +9,18 @@ public class GameControler : MonoBehaviour
     private static GameControler instance;
     public static GameControler GetInstance() { return instance; }
 
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+
     //COMBOS
     private int puntuacion;
     private bool previousCombo;

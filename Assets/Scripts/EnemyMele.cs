@@ -38,16 +38,16 @@ public class EnemyMele : MonoBehaviour
 
         if (Vector3.Distance(transform.position, playerGO.transform.position) <= distanciaAtaque)
         {
-            agente.SetDestination(transform.position);
+            this.agente.SetDestination(transform.position);
             if (!attacking)
             {
-                animator.SetBool("Attacking", true);
+                this.animator.SetBool("Attacking", true);
                 StartCoroutine(Atacar());
             }
         }
         else
         {
-            agente.SetDestination(playerGO.transform.position);
+            this.agente.SetDestination(playerGO.transform.position);
         }
 
         //private void FixedUpdate()
@@ -67,12 +67,12 @@ public class EnemyMele : MonoBehaviour
         {
             if (!attacking)
             {
-                animator.SetBool("Dirty", true);
+                this.animator.SetBool("Dirty", true);
                 attacking = true;
                 yield return new WaitForSeconds(2f);
                 playerScr.RecibirDano(ataque);
                 attacking = false;
-                animator.SetBool("Attacking", false);
+                this.animator.SetBool("Attacking", false);
             }
         }
 

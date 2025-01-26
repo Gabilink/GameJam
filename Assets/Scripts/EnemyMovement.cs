@@ -32,24 +32,12 @@ public class EnemyMovement : MonoBehaviour
 
         if(Vector3.Distance(transform.position, playerPos.position) <= 10)
         {
-            //crear un raycast para ver si el jugador esta en la mira
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, playerPos.position - transform.position, out hit))
-            {
-                if (hit.collider.CompareTag("Player"))
-                {
-                    angente.SetDestination(playerPos.position);
-                }
-                else
-                {
-                    angente.SetDestination(transform.position);
-                }
-            }
+            angente.SetDestination(playerPos.position);
 
         }
         else
         {
-            angente.SetDestination(transform.position);
+            this.angente.SetDestination(transform.position);
             
         }
         ////if(sucio)

@@ -23,6 +23,8 @@ public class Player_Shoot : MonoBehaviour
     [SerializeField] private AudioClip recargarClip;
     [SerializeField] private AudioClip disparoClip;
 
+    [SerializeField] private Animator anim;
+
     //PROVISIONAL
     public float timeBtwShot = 1;  
     private float timeOfLastShot;
@@ -71,10 +73,13 @@ public class Player_Shoot : MonoBehaviour
         sonido.clip = disparoClip;
         sonido.Play();
 
+        
+
         ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         Debug.Log("BANG");
         burbujas.Play();
         agua.Play();
+        anim.SetTrigger("Shoot");
         CheckCollider();
     }
     void CheckCollider()

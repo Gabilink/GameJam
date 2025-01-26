@@ -89,7 +89,7 @@ public class Player_Movement : MonoBehaviour
     }
     void LockCursor()
     {
-        if(!gameMaster.GetGamePause())
+        if(gameMaster.GetGamePause() == false)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;

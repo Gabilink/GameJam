@@ -37,16 +37,22 @@ public class HUDControler : MonoBehaviour
 
     private void Start()
     {
+        if (SceneManager.GetActiveScene().buildIndex == mainMenuScene)
+        {
+            return;
+        }
+        else
+        {
 
-        gameControler = GameControler.GetInstance();
-        playerScr = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Movement>();
-        saludPlayer = (int)playerScr.GetLife();
-        escudoPlayer = playerScr.GetEscudo();
-        ammoPlayer = playerScr.GetAmmo();
-        granadasPlayer = playerScr.GetGranadas();
+            gameControler = GameControler.GetInstance();
+            playerScr = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Movement>();
+            saludPlayer = (int)playerScr.GetLife();
+            escudoPlayer = playerScr.GetEscudo();
+            ammoPlayer = playerScr.GetAmmo();
+            granadasPlayer = playerScr.GetGranadas();
 
-        InvokeRepeating("UpdateUI", 0, 1f);
-
+            InvokeRepeating("UpdateUI", 0, 1f);
+        }
     }
 
     private void UpdateUI()
