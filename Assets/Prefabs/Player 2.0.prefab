@@ -5058,7 +5058,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3896240954773182898, guid: 9029d192edc70d1418b33738f9386a5b, type: 3}
       propertyPath: sensitivityMouse
-      value: 100
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 4330855924271799023, guid: 9029d192edc70d1418b33738f9386a5b, type: 3}
       propertyPath: m_Height

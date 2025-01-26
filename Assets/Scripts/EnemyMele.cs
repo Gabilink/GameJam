@@ -13,6 +13,8 @@ public class EnemyMele : MonoBehaviour
     private GameObject playerGO;
     private Player_Movement playerScr;
 
+    private Rigidbody rb;
+
     public Animator anim;
 
     private void Start()
@@ -21,43 +23,54 @@ public class EnemyMele : MonoBehaviour
         agente.stoppingDistance = distanciaAtaque;
 
         playerGO = GameObject.FindGameObjectWithTag("Player");
+
         playerScr = playerGO.GetComponent<Player_Movement>();
 
         hitbox.SetActive(false);
+
+        rb = gameObject.GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
-        if(Vector3.Distance(transform.position, playerGO.transform.position) >= distanciaAtaque)
+        if (anim.GetBool("Dirty"))
         {
-            agente.SetDestination(playerGO.transform.position);
+            if (Vector3.Distance(transform.position, playerGO.transform.position) >= distanciaAtaque)
+            {
+                agente.SetDestination(playerGO.transform.position);
+            }
+            else
+            {
+                agente.SetDestination(transform.position);
+                StartCoroutine(Atacar());
+                anim.SetBool("Attacking", true);
+            }
         }
-        else
+                     
+    }
+    private void FixedUpdate()
+    {
+        Vector3 vel = rb.linearVelocity;
+        if (vel.magnitude!=0)
         {
-            agente.SetDestination(transform.position);
-            Debug.Log("ATAQUE");
-            StartCoroutine(Atacar());
-            anim.SetBool("Attacking", true);
+            anim.SetBool("Walking", true);
+        }
+        if (vel.magnitude == 0)
+        {
+            anim.SetBool("Walking", false);
         }
     }
 
     IEnumerator Atacar()
     {
         if (!attacking)
-        {         
+        {
+            anim.SetBool("Dirty", true);
             attacking = true;
             yield return new WaitForSeconds(2f);          
             attacking = false;
             anim.SetBool("Attacking", false);
         }
     }
-    public void ActivateHitbox(string a)
-    {
-        hitbox.SetActive(true);
-        Debug.Log(a);
-    }
-    public void DeactivateHitbox()
-    {
-        hitbox.SetActive(false);
-    }
+
 }
