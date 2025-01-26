@@ -670,6 +670,11 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!95 &440813331 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8848736790179627269, guid: e19a591d466276f4893d1b736b7355a6, type: 3}
+  m_PrefabInstance: {fileID: 849445060}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &496424041
 GameObject:
   m_ObjectHideFlags: 0
@@ -1652,6 +1657,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 2.0
       objectReference: {fileID: 0}
+    - target: {fileID: 8261661037505736222, guid: e19a591d466276f4893d1b736b7355a6, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 440813331}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2065,6 +2074,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be473629698d6484b98d50b3451c40b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+  emo1: {fileID: 0}
+  emo2: {fileID: 0}
+  limpio: {fileID: 0}
 --- !u!114 &1396513070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2078,8 +2091,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanciaAtaque: 3
-  dano: 0
-  hitbox: {fileID: 1857002763}
+  animator: {fileID: 0}
 --- !u!114 &1396513071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2777,7 +2789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fccb4e52508f6164f941d59f7546e539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitbox: {fileID: 1857002763}
+  damage: 0
 --- !u!1 &2010652660
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,6 +11,8 @@ public class Player_Shoot : MonoBehaviour
     public ParticleSystem burbujas;
     public ParticleSystem agua;
 
+    [SerializeField] private Animator animator;
+
     //PROVISIONAL
     public float timeBtwShot = 1;  
     private float timeOfLastShot;
@@ -33,6 +35,7 @@ public class Player_Shoot : MonoBehaviour
     {
         ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         Debug.Log("BANG");
+        animator.SetTrigger("Shoot");
         burbujas.Play();
         agua.Play();
         CheckCollider();
