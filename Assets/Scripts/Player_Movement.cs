@@ -20,7 +20,7 @@ public class Player_Movement : MonoBehaviour
     {
         PlayerMove();
         PlayerRotate();
-        Vector3 vel= transform.forward * Input.GetAxis("Vertical") * playerSpeed;
+        Vector3 vel = transform.forward * Input.GetAxis("Vertical") * playerSpeed;
         vSpeed -= gravity * Time.deltaTime;
         vel.y = vSpeed; // include vertical speed in vel
                         // convert vel to displacement and Move the character:

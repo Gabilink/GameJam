@@ -43,10 +43,17 @@ public class EnemyMele : MonoBehaviour
         if (!attacking)
         {
             attacking = true;
-            hitbox.SetActive(true);
-            yield return new WaitForSeconds(2f);
-            hitbox.SetActive(false);
+            yield return new WaitForSeconds(2f);          
             attacking = false;
         }
+    }
+    public void ActivateHitbox(string a)
+    {
+        hitbox.SetActive(true);
+        Debug.Log(a);
+    }
+    public void DeactivateHitbox()
+    {
+        hitbox.SetActive(false);
     }
 }
